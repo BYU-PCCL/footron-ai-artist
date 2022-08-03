@@ -126,7 +126,7 @@ const ControlsComponent = (): JSX.Element => {
                   </div>
                 ))}
             </div>
-            <i>When you're done picking options, click the "Generate" button!</i>
+            <i>When you're done picking options, click the "Generate" button above!</i>
           </section>
         </>
       )}
