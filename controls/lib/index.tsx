@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useMessaging } from "@footron/controls-client";
 import options from "./options.json";
 import "./styles.css";
