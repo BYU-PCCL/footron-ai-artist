@@ -61,7 +61,7 @@ const ControlsComponent = (): JSX.Element => {
   }
 
   return (
-    <div className="controls">
+    <div className="controls ai-artist">
       <div className="button-section">
         <div>
           <button onClick={clear} disabled={isSelectedEmpty || isGenerating}>
