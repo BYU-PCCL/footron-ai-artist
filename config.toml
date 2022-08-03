@@ -1,0 +1,7 @@
+title = "AI Artist"
+description = "Create realistic images and art from a description."
+id = "ai-artist"
+type = "web"
+action_hints = ["generate your own images"]
+layout = "full"
+lifetime = 240

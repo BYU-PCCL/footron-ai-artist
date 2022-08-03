@@ -1,0 +1,101 @@
+@import url("https://rsms.me/inter/inter.css");
+h2, button, div {
+  font-family: "Inter", sans-serif !important;
+}
+@supports (font-variation-settings: normal) {
+  h2, button, div {
+    font-family: "Inter var", sans-serif !important;
+    
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+.button-section {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.controls {
+  padding: 0.5rem;
+  background-color: white;
+  color: #333;
+  width: 100%;
+  min-height: 100vh;
+}
+
+button {
+  background-color: #222;
+  color: white;
+  border: 1px solid #111;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25rem;
+  margin: 0.25rem;
+}
+
+button[disabled] {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  color: #999;
+}
+
+.generate {
+  background-color: rgba(39, 157, 39, 0.8);
+  border: 1px solid rgb(39, 157, 39);
+  color: white;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.flex div {
+  cursor: pointer;
+  background-color: #f4f4f4;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+}
+
+.selected, .options {
+    margin: 1rem 0;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.selected {
+    min-height: 100px;
+}
+
+.options {
+    min-height: 300px;
+}
+
+.button-row {
+  margin: 1rem 0;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.images a {
+  display: flex;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
