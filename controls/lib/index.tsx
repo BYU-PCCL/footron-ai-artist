@@ -74,7 +74,11 @@ const ControlsComponent = (): JSX.Element => {
             Skip
           </button>
         </div>
-        <button className="generate" onClick={generate} disabled={isSelectedEmpty || isGenerating}>
+        <button
+          className="generate"
+          onClick={generate}
+          disabled={isSelectedEmpty || isGenerating}
+        >
           Generate
         </button>
       </div>
