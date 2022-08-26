@@ -37,7 +37,7 @@ button {
   border: 1px solid #111;
   padding: 0.25em 0.5em;
   border-radius: 0.25rem;
-  margin: 0.25rem;
+  margin: 0.25rem 0;
 }
 
 button[disabled] {
@@ -82,7 +82,8 @@ button[disabled] {
 }
 
 .button-row {
-  margin: 1rem 0;
+  display: inline-flex;
+  gap: 0.5rem;
 }
 
 .images {

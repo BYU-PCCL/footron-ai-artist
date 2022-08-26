@@ -4,8 +4,14 @@
   import { createNoise2D } from "simplex-noise";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
+  import { tick } from "svelte";
+  import { v4 as uuidv4 } from 'uuid';
+import { current_component } from "svelte/internal";
 
   const serverUrl = "http://monster.cs.byu.edu:32553"
+  // const serverUrl = "http://localhost:32553";
+
+  let generationId: string | null = null;
 
   onMount(() => {
     timer = setTimeout(start_autopilot, 100);
@@ -18,9 +24,8 @@
       }
 
       clearTimeout(timer);
-      show = false;
-      image_urls = [];
-      let image_blobs = await run_prompt(controlsPrompt, `${serverUrl}/generate/${encodeURIComponent(controlsPrompt)}`);
+      retypeNextPrompt(controlsPrompt);
+      let image_blobs = await generateImages(controlsPrompt);
       image_blobs.forEach(async (blob) => {
         const base64Image = await blobToBase64(blob);
         messaging.sendMessage(base64Image);
@@ -31,6 +36,7 @@
       prompt = "";
       displayText("");
       autopilot = false;
+      generationId = null;
       show = false;
       image_urls = [];
       connection.addCloseListener(() => {
@@ -70,13 +76,9 @@
   let timer: ReturnType<typeof setTimeout>;
 
   $: {
-    if (show && image_urls.length === 4) {
+    if (show && image_urls.length === 4 && autopilot) {
       timer = setTimeout(() => {
-        if (autopilot) {
-          show = false;
-          image_urls = [];
-          timer = setTimeout(start_autopilot, contentTransitionDuration);
-        }
+          start_autopilot();
       }, displayImagesWait);
     }
   }
@@ -86,44 +88,55 @@
     if (prompt === nextPrompt) {
       nextPrompt = await get_random_prompt();
     }
-    run_prompt(nextPrompt, `${serverUrl}/autopilot/${encodeURIComponent(nextPrompt)}`);
+    retypeNextPrompt(nextPrompt);
+    generateImages(nextPrompt);
   }
 
-  async function run_prompt(nextPrompt: string, url: string) {
+  function retypeNextPrompt(nextPrompt: string) {
+    if (prompt === nextPrompt) {
+      return;
+    }
+    show = false;
+    image_urls = [];
     let diffAt = [...prompt].findIndex((char, i) => char !== nextPrompt[i]);
     diffAt = diffAt === -1 ? prompt.length : diffAt;
-    backspace(prompt, diffAt, () => {
-      prompt = nextPrompt;
-      type(nextPrompt, diffAt, () => {
-        show = true;
+    timer = setTimeout(() => {
+      backspace(prompt, diffAt, async () => {
+        prompt = nextPrompt;
+        type(nextPrompt, diffAt, () => {
+          show = true;
+        });
       });
-    });
-    const image_paths: string[] = await get_image_paths(url);
-    let image_blobs = await Promise.all(
-      image_paths.map(async (path) => {
-        const response = await fetch(`${serverUrl}/image/${path}`);
-        return await response.blob();
-      })
-    );
-    image_urls = image_blobs.map((blob) => URL.createObjectURL(blob));
+    }, contentTransitionDuration);
+  }
+
+  async function generateImages(prompt: string) {
+    const image_blobs = [];
+    const currentGenerationId = uuidv4();
+    generationId = currentGenerationId;
+    for (let i = 0; i < 4; i++) {
+      const image = await generate(`${serverUrl}/generate/${prompt}`);
+      image_blobs.push(image);
+      const imageUrl = URL.createObjectURL(image);
+      if (currentGenerationId !== generationId) {
+        show = false;
+        image_urls = [];
+        return [];
+      }
+      image_urls = [...image_urls, imageUrl];
+    }
     return image_blobs;
+  }
+
+  async function generate(url: string) {
+    const generateResponse = await fetch(url);
+    const image = await generateResponse.blob();
+    return image;
   }
 
   async function get_random_prompt() {
     const response = await fetch(`${serverUrl}/random-prompt`);
     return await response.text();
-  }
-
-  async function get_image_paths(url: string) {
-    const response = await fetch(url);
-    const generation = await response.json();
-    if (!generation.success) {
-      clearTimeout(timer);
-      prompt = generation.prompt;
-      displayText(generation.prompt);
-      show = true;
-    }
-    return generation.image_paths;
   }
 
   function type(text: string, from: number, onComplete: () => void) {
@@ -181,7 +194,7 @@
           in:fade={{ duration: contentTransitionDuration }}
           out:fade={{ duration: contentTransitionDuration }}
         >
-          {#if image_urls.length !== 0}
+          {#if i < image_urls.length}
             <img
               src={image_urls[i]}
               alt="AI generated {prompt}"

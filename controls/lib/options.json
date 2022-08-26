@@ -10,7 +10,7 @@
         "a basquiat painting of",
         "a cubism style painting of",
         "a propaganda poster of",
-        "an oriental painting of",
+        "an asian painting of",
         "a zoomed in photo of",
         "an aerial photo of",
         "a da Vinci sculpture of",
@@ -42,7 +42,6 @@
         "a beaver",
         "an emoji",
         "a robot",
-        "a greek statue",
         "a hamburger",
         "an android",
         "a maple leaf",
@@ -74,7 +73,8 @@
         "using a microscope",
         "looking into a mirror",
         "inside a washing machine",
-        "contemplating the incompleteness of math"
+        "contemplating the incompleteness of math",
+        "made out of a vending machine"
     ],
     [
         "in a garden",
@@ -85,6 +85,7 @@
         "on the moon",
         "on the fortnite loading screen",
         "at the statue of liberty",
-        "at the Eiffel Tower"
+        "at the Eiffel Tower",
+        "with an exploading nebulae in the background"
     ]
 ]
