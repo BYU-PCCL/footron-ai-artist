@@ -61,7 +61,7 @@ const ControlsComponent = (): JSX.Element => {
   }
 
   return (
-    <div className="controls">
+    <div className="controls ai-artist">
       <div className="button-section">
         <div className="button-row">
           <button onClick={clear} disabled={isSelectedEmpty || isGenerating}>
@@ -74,7 +74,11 @@ const ControlsComponent = (): JSX.Element => {
             Skip
           </button>
         </div>
-        <button className="generate" onClick={generate} disabled={isSelectedEmpty || isGenerating}>
+        <button
+          className="generate"
+          onClick={generate}
+          disabled={isSelectedEmpty || isGenerating}
+        >
           Generate
         </button>
       </div>
@@ -122,6 +126,7 @@ const ControlsComponent = (): JSX.Element => {
                   </div>
                 ))}
             </div>
+            <i>When you&apos;re done picking options, click the &quot;Generate&quot; button above!</i>
           </section>
         </>
       )}

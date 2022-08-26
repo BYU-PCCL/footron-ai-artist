@@ -1,37 +1,35 @@
 @import url("https://rsms.me/inter/inter.css");
-h2, button, div {
+.ai-artist h2,
+.ai-artist button,
+.ai-artist div {
   font-family: "Inter", sans-serif !important;
 }
 @supports (font-variation-settings: normal) {
-  h2, button, div {
+  .ai-artist h2,
+  .ai-artist button,
+  .ai-artist div {
     font-family: "Inter var", sans-serif !important;
-    
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
-h2 {
+.ai-artist h2 {
   margin: 1rem 0;
 }
 
-.button-section {
+.ai-artist .button-section {
   display: flex;
   justify-content: space-between;
   color: #333;
 }
 
-.controls {
+.ai-artist .controls {
   padding: 0.5rem;
-  background-color: white;
   color: #333;
   width: 100%;
   min-height: 100vh;
 }
 
-button {
+.ai-artist button {
   background-color: #222;
   color: white;
   border: 1px solid #111;
@@ -40,26 +38,26 @@ button {
   margin: 0.25rem 0;
 }
 
-button[disabled] {
+.ai-artist button[disabled] {
   background-color: #eee;
   border: 1px solid #ccc;
   color: #999;
 }
 
-.generate {
+.ai-artist .generate {
   background-color: rgba(39, 157, 39, 0.8);
   border: 1px solid rgb(39, 157, 39);
   color: white;
 }
 
-.flex {
+.ai-artist .flex {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.5rem;
 }
 
-.flex div {
+.ai-artist .flex div {
   cursor: pointer;
   background-color: #f4f4f4;
   padding: 0.5rem 1rem;
@@ -67,36 +65,36 @@ button[disabled] {
   border: 1px solid #ccc;
 }
 
-.selected, .options {
-    margin: 1rem 0;
-    background-color: white;
-    border-radius: 0.5rem;
+.ai-artist .selected,
+.ai-artist .options {
+  margin: 1rem 0;
+  border-radius: 0.5rem;
 }
 
-.selected {
-    min-height: 100px;
+.ai-artist .selected {
+  min-height: 100px;
 }
 
-.options {
-    min-height: 300px;
+.ai-artist .options {
+  min-height: 300px;
 }
 
-.button-row {
+.ai-artist .button-row {
   display: inline-flex;
   gap: 0.5rem;
 }
 
-.images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+.ai-artist .images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
 }
 
-.images a {
+.ai-artist .images a {
   display: flex;
 }
 
-img {
-    width: 100%;
-    height: auto;
+.ai-artist img {
+  width: 100%;
+  height: auto;
 }
