@@ -5,10 +5,10 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { tick } from "svelte";
-  import { v4 as uuidv4 } from 'uuid';
-import { current_component } from "svelte/internal";
+  import { v4 as uuidv4 } from "uuid";
+  import { current_component } from "svelte/internal";
 
-  const serverUrl = "http://monster.cs.byu.edu:32553"
+  const serverUrl = "http://monster.cs.byu.edu:32553";
   // const serverUrl = "http://localhost:32553";
 
   let generationId: string | null = null;
@@ -78,7 +78,7 @@ import { current_component } from "svelte/internal";
   $: {
     if (show && image_urls.length === 4 && autopilot) {
       timer = setTimeout(() => {
-          start_autopilot();
+        start_autopilot();
       }, displayImagesWait);
     }
   }

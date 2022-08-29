@@ -12,6 +12,10 @@
   }
 }
 
+.ai-artist, .ai-artist * {
+  box-sizing: border-box;
+}
+
 .ai-artist h2 {
   margin: 1rem 0;
 }
@@ -22,7 +26,7 @@
   color: #333;
 }
 
-.ai-artist .controls {
+.ai-artist.controls {
   padding: 0.5rem;
   color: #333;
   width: 100%;
@@ -97,4 +101,9 @@
 .ai-artist img {
   width: 100%;
   height: auto;
+}
+
+.ai-artist i {
+  display: block;
+  margin: 1rem 0;
 }
